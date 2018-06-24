@@ -196,8 +196,21 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ASUTPShield.cs" />
+    <Compile Include="Models\ComponentPart.cs" />
+    <Compile Include="Models\Condition.cs" />
+    <Compile Include="Models\ConditionType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Impact.cs" />
+    <Compile Include="Models\ImpactType.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PlacementSlot.cs" />
+    <Compile Include="Models\PlacementType.cs" />
+    <Compile Include="Models\Profield.cs" />
+    <Compile Include="Models\Property.cs" />
+    <Compile Include="Models\PropertyType.cs" />
+    <Compile Include="Models\SpacePosition.cs" />
+    <Compile Include="Models\SpacePositionType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
