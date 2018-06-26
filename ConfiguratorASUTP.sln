@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27428.2043
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfiguratorASUTP", "ConfiguratorASUTP\ConfiguratorASUTP.csproj", "{5F47A64C-25B0-426F-853E-446C8111D6BE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostgreSQL.AspNet.Identity.EntityFramework", "PostgreSQL.AspNet.Identity.EntityFramework\PostgreSQL.AspNet.Identity.EntityFramework.csproj", "{FA718219-F0D7-4E24-855F-3CB01C2A857E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{5F47A64C-25B0-426F-853E-446C8111D6BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F47A64C-25B0-426F-853E-446C8111D6BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F47A64C-25B0-426F-853E-446C8111D6BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA718219-F0D7-4E24-855F-3CB01C2A857E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA718219-F0D7-4E24-855F-3CB01C2A857E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA718219-F0D7-4E24-855F-3CB01C2A857E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA718219-F0D7-4E24-855F-3CB01C2A857E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

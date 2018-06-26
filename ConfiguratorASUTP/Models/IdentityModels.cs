@@ -31,8 +31,6 @@ namespace ConfiguratorASUTP.Models
         }
         public static ApplicationDbContext Create()
         {
-            NpgsqlConnection connection = new NpgsqlConnection("Server=127.0.0.1; Port=5432; User Id=postgres; Password=$a!omonGrundy1987; Database=ASUTPConfigurator;");
-            connection.Open();
             return new ApplicationDbContext();
         }
     }
