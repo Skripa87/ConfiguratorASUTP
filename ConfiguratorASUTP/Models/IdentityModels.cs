@@ -2,7 +2,7 @@
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
+using PostgreSQL.AspNet.Identity.EntityFramework;
 using Npgsql;
 
 namespace ConfiguratorASUTP.Models
@@ -21,7 +21,8 @@ namespace ConfiguratorASUTP.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext() : base(nameOrConnectionString: "PostgreSQL")
+        public ApplicationDbContext()
+            : base("ASUTPConfigurator", throwIfV1Schema: false)
         {
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

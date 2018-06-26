@@ -100,7 +100,7 @@ namespace PostgreSQL.AspNet.Identity.EntityFramework {
 		/// Default constructor which uses the DefaultConnection
 		/// </summary>
 		public IdentityDbContext()
-			: this("DefaultConnection") {
+			: this("ASUTPConfigurator") {
 		}
 
 		/// <summary>
@@ -178,7 +178,8 @@ namespace PostgreSQL.AspNet.Identity.EntityFramework {
 			: base(nameOrConnectionString, model) {
 		}
 
-		internal static bool IsIdentityV1Schema(DbContext db) {
+		internal static bool IsIdentityV1Schema(DbContext db)
+        {
 			var originalConnection = db.Database.Connection as NpgsqlConnection;
 
 			// Give up and assume its ok if its not a sql connection
