@@ -21,19 +21,24 @@ namespace ConfiguratorASUTP.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext() : base(nameOrConnectionString: "PostgreSQL")
+        public ApplicationDbContext()
+            : base("ASUTPConfigurator", throwIfV1Schema: false)
         {
         }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.HasDefaultSchema("public");
-            base.OnModelCreating(modelBuilder);
-        }
+
         public static ApplicationDbContext Create()
         {
-            NpgsqlConnection connection = new NpgsqlConnection("Server=127.0.0.1; Port=5432; User Id=postgres; Password=$a!omonGrundy1987; Database=ASUTPConfigurator;");
-            connection.Open();
             return new ApplicationDbContext();
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // If you are letting EntityFrameowrk to create the database, 
+            // it will by default create the __MigrationHisotry table in the dbo schema
+            // Use HasDefaultSchema to specify alternative (i.e public) schema
+            modelBuilder.HasDefaultSchema("public");
         }
     }
 }
