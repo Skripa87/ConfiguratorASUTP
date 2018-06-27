@@ -7,22 +7,22 @@ using System.Web;
 
 namespace ConfiguratorASUTP.Models
 {
-    [Table("ASUTPShields")]
+    [Table("RemoteControls")]
     public class RemoteControl
     {
         [Key]
-        public int ASUTPshieldId { get; set; }
-        public string ASUTPShieldName { get; set; }
-        public string ASUTPShieldDesignation { get; set; }
-        public List<PlacementSlot> ASUTPShieldSlots { get; set; }
-        public List<ComponentPart> ASUTPShieldParts { get; set; }
-        public List<Property> ASUTPShieldProperties { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Designation { get; set; }
+        public List<PlacementSlot> Slots { get; set; }
+        public List<ComponentPart> Parts { get; set; }
+        public List<Property> Properties { get; set; }
         public Profield Profield { get; set; }
         public RemoteControl()
         {
-            ASUTPShieldSlots = new List<PlacementSlot>();
-            ASUTPShieldParts = new List<ComponentPart>();
-            ASUTPShieldProperties = new List<Property>();
+            Slots = new List<PlacementSlot>();
+            Parts = new List<ComponentPart>();
+            Properties = new List<Property>();
         }
     }
 }

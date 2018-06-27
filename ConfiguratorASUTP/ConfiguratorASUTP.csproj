@@ -57,6 +57,12 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Exchange.WebServices, Version=15.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Exchange.WebServices.2.2\lib\40\Microsoft.Exchange.WebServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Exchange.WebServices.Auth, Version=15.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Exchange.WebServices.2.2\lib\40\Microsoft.Exchange.WebServices.Auth.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.1.1.0\lib\netstandard1.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
     </Reference>
@@ -247,19 +253,19 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ASUTPShield.cs" />
-    <Compile Include="Models\ComponentPart.cs" />
     <Compile Include="Models\Condition.cs" />
     <Compile Include="Models\ConditionType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Impact.cs" />
     <Compile Include="Models\ImpactType.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Part.cs" />
     <Compile Include="Models\PlacementSlot.cs" />
     <Compile Include="Models\PlacementType.cs" />
     <Compile Include="Models\Profield.cs" />
     <Compile Include="Models\Property.cs" />
     <Compile Include="Models\PropertyType.cs" />
+    <Compile Include="Models\RemoteControl.cs" />
     <Compile Include="Models\SpacePosition.cs" />
     <Compile Include="Models\SpacePositionType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

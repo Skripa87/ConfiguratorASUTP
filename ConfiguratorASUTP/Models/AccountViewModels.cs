@@ -65,6 +65,11 @@ namespace ConfiguratorASUTP.Models
     public class RegisterViewModel
     {
         [Required]
+        [Display(Name = "Логин")]
+        [StringLength(100, ErrorMessage = "Значение {0} должно содержать не менее {2} символов.", MinimumLength = 1)]
+        public string Login { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Адрес электронной почты")]
         public string Email { get; set; }
