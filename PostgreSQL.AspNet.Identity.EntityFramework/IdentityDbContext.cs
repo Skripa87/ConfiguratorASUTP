@@ -23,7 +23,7 @@ namespace PostgreSQL.AspNet.Identity.EntityFramework {
 		/// Default constructor which uses the DefaultConnection
 		/// </summary>
 		public IdentityDbContext()
-			: this("DefaultConnection") {
+			: this("ASUTPConfigurator") {
 		}
 
 		/// <summary>
@@ -244,7 +244,7 @@ namespace PostgreSQL.AspNet.Identity.EntityFramework {
 		/// Default constructor which uses the "DefaultConnection" connectionString
 		/// </summary>
 		public IdentityDbContext()
-			: this("DefaultConnection") {
+			: this("ASUTPConfigurator") {
 		}
 
 		/// <summary>
