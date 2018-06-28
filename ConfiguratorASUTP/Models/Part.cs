@@ -18,14 +18,33 @@ namespace ConfiguratorASUTP.Models
         public Position Position { get; set; }
         public virtual List<Impact> Impacts { get; set; }
         public virtual List<Property> Properties { get; set; }
-        public virtual List<Part> Parts { get; set; }
+        public List<Part> Parts { get; set; }
         public virtual List<Condition> Conditions { get; set; }
+        public virtual List<AssemblyPart> Assemblies { get; set; }
         public Part()
         {
             Impacts = new List<Impact>();
             Properties = new List<Property>();
-            Parts = new List<Part>();
+            Assemblies = new List<AssemblyPart>();
             Conditions = new List<Condition>();
+            Parts = new List<Part>();
+            if (Assemblies == null || Assemblies.Count == 0 )
+            {
+                return;
+            }
+            else
+            {
+                foreach (var item in Assemblies)
+                {
+                    if(item == null || item.Parts == null || item.Parts.Count > 0)
+                    {
+                        foreach (var itemLevel2 in item.Parts)
+                        {
+                            Parts.Add(itemLevel2);
+                        }
+                    }
+                }
+            }
         }
     }
 }

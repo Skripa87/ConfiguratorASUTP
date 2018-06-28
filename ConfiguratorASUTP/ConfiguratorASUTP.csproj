@@ -243,6 +243,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AssemblyPart.cs" />
     <Compile Include="Models\ASUTPConfiguratorContext.cs" />
     <Compile Include="Models\Condition.cs" />
     <Compile Include="Models\ConditionType.cs" />

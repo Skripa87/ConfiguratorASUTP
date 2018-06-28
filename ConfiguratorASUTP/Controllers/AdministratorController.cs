@@ -11,6 +11,8 @@ namespace ConfiguratorASUTP.Controllers
         // GET: Administrator
         public ActionResult CreateNewPropertyType()
         {
+            Models.ASUTPConfiguratorContext db = new Models.ASUTPConfiguratorContext();
+            var prop = db.Parts.ToList();
             return View();
         }
     }

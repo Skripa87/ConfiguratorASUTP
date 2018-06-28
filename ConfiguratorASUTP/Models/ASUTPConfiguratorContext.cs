@@ -24,24 +24,29 @@ namespace ConfiguratorASUTP.Models
                                        .HasMany(m => m.Impacts)
                                        .WithMany(em => em.Parts)
                                        .Map(mm => mm.MapLeftKey("ImpactId").MapRightKey("PartId").ToTable("PartsImpacts"));
-            modelBuilder.Entity<Part>().HasMany(m => m.Parts)
-                                       .WithMany(em => em.Parts)
-                                       .Map(mm => mm.MapLeftKey("InPartId").MapRightKey("PartId").ToTable("PartsParts"));
             modelBuilder.Entity<Part>().HasMany(m => m.Conditions)
                                        .WithMany(em => em.Parts)
                                        .Map(mm => mm.MapLeftKey("ConditionId").MapRightKey("PartId").ToTable("PartsConditions"));
             modelBuilder.Entity<Part>().HasMany(m => m.Properties)
                                        .WithMany(em => em.Parts)
                                        .Map(mm => mm.MapLeftKey("PropertyId").MapRightKey("PartId").ToTable("PartsProperties"));
-            modelBuilder.Entity<Position>().HasKey(e => e.Id);
-
-
+            modelBuilder.Entity<Part>().HasKey(e => e.Id)
+                                       .HasMany(m => m.Assemblies)
+                                       .WithMany(em => em.Parts)
+                                       .Map(mm => mm.MapLeftKey("PartId").MapRightKey("AssemblyId").ToTable("PartsInAssemblyId"));
+            modelBuilder.Entity<Position>()
+                        .HasKey(e => e.Id);
+            modelBuilder.Entity<Profield>()
+                        .HasKey(e => e.ProfieldId);
+            modelBuilder.Entity<Property>()
+                        .HasKey(e => e.Id);
         }
 
         public virtual DbSet<Condition> Conditions { get; set; }
         public virtual DbSet<ConditionType> ConditionTypes { get; set; }
         public virtual DbSet<Impact> Impacts { get; set; }
         public virtual DbSet<ImpactType> ImpactTypes { get; set; }
+        public virtual DbSet<AssemblyPart> AssemblyParts { get; set; }
         public virtual DbSet<Part> Parts { get; set; }
         public virtual DbSet<Position> Positions { get; set; }
         public virtual DbSet<Profield> Profields { get; set; }
