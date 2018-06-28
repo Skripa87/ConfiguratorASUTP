@@ -152,7 +152,7 @@ namespace ConfiguratorASUTP.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Login, Email = model.Email, ConfirmedEmail = false };
+                var user = new ApplicationUser { UserName = model.Login, Email = model.Email, EmailConfirmed = false };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -169,20 +169,26 @@ namespace ConfiguratorASUTP.Controllers
                     emailMessage.ToRecipients.Add(user.Email);
                     emailMessage.SendAndSaveCopy();
                     //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
                     // Дополнительные сведения о включении подтверждения учетной записи и сброса пароля см. на странице https://go.microsoft.com/fwlink/?LinkID=320771.
                     // Отправка сообщения электронной почты с этой ссылкой
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Подтверждение учетной записи", "Подтвердите вашу учетную запись, щелкнув <a href=\"" + callbackUrl + "\">здесь</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Confirm", "Account", new { Email = user.Email });
                 }
                 AddErrors(result);
             }
 
             // Появление этого сообщения означает наличие ошибки; повторное отображение формы
             return View(model);
+        }
+
+        [AllowAnonymous]
+        public string Confirm(string Email)
+        {
+            return "На почтовый адрес " + Email + " Вам высланы дальнейшие инструкции по завершению регистрации";
         }
 
         private static bool RedirectionUrlValidationCallback(string redirectionUrl)
@@ -210,15 +216,19 @@ namespace ConfiguratorASUTP.Controllers
             {
                 if (user.Email == email)
                 {
-                    user.ConfirmedEmail = true;
+                    user.EmailConfirmed = true;
                     await UserManager.UpdateAsync(user);
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                    return RedirectToAction("Index", "Home", new { ConfirmedEmail = user.Email });
+                    return RedirectToAction("Index", "Home", new { EmailConfirmed = user.Email });
                 }
                 else
                 {
                     return RedirectToAction("Confirm");
                 }
+            }
+            else
+            {
+                return RedirectToAction("Confirm", "Account", new { Email = "" });
             }
             //var result = await UserManager.ConfirmEmailAsync(userId, code);
             //return View(result.Succeeded ? "ConfirmEmail" : "Error");

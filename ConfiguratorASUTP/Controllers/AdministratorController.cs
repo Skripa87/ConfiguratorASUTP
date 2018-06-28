@@ -9,7 +9,7 @@ namespace ConfiguratorASUTP.Controllers
     public class AdministratorController : Controller
     {
         // GET: Administrator
-        public ActionResult Index()
+        public ActionResult CreateNewPropertyType()
         {
             return View();
         }
