@@ -335,8 +335,7 @@ namespace PostgreSQL.AspNet.Identity.EntityFramework {
 			string schema = getConfiguredSchema();
 
 			// Needed to ensure subclasses share the same table
-			var user = modelBuilder.Entity<TUser>()
-				.ToTable("AspNetUsers", schema);
+			var user = modelBuilder.Entity<TUser>().ToTable("AspNetUsers", schema);
 			user.HasMany(u => u.Roles).WithRequired().HasForeignKey(ur => ur.UserId);
 			user.HasMany(u => u.Claims).WithRequired().HasForeignKey(uc => uc.UserId);
 			user.HasMany(u => u.Logins).WithRequired().HasForeignKey(ul => ul.UserId);

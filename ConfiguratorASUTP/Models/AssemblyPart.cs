@@ -9,7 +9,7 @@ namespace ConfiguratorASUTP.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public virtual List<Part> Parts {get;set;}
+        public virtual List<Part> Parts { get;set;}
         public AssemblyPart()
         {
             Parts = new List<Part>();

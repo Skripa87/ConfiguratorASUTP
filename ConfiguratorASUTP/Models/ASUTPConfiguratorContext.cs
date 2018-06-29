@@ -16,29 +16,44 @@ namespace ConfiguratorASUTP.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Condition>().HasKey(e => e.Id).HasRequired(h=>h.Type);
-            modelBuilder.Entity<ConditionType>().HasKey(e => e.Id);
-            modelBuilder.Entity<Impact>().HasKey(e => e.Id).HasRequired(h => h.Type);
-            modelBuilder.Entity<ImpactType>().HasKey(e => e.Id);
-            modelBuilder.Entity<Part>().HasKey(e => e.Id)
-                                       .HasMany(m => m.Impacts)
+            var part = modelBuilder.Entity<Part>().ToTable("public.parts");
+            part.HasKey(p => p.Part_Id);
+            modelBuilder.Entity<Condition>().ToTable("public.conditions").HasKey(e => e.Id).HasRequired(h => h.Type);
+            modelBuilder.Entity<ConditionType>().ToTable("public.conditiontype").HasKey(e => e.Id);
+            modelBuilder.Entity<Impact>().ToTable("public.impacts").HasKey(e => e.Id).HasRequired(h => h.Type);
+            modelBuilder.Entity<ImpactType>().ToTable("public.impacttypes").HasKey(e => e.Id);
+            modelBuilder.Entity<AssemblyPart>().ToTable("public.assemblyparts").HasKey(e => e.Id);
+            //modelBuilder.Entity<Part>().HasKey(e => e.Id)
+            //                           .HasMany(m => m.Impacts)
+            //                           .WithMany(em => em.Parts)
+            //                           .Map(mm => mm.MapLeftKey("ImpactId").MapRightKey("PartId").ToTable("PartsImpacts"));
+            /*modelBuilder.Entity<Part>()*/part.HasMany(m => m.Part_Conditions)
                                        .WithMany(em => em.Parts)
-                                       .Map(mm => mm.MapLeftKey("ImpactId").MapRightKey("PartId").ToTable("PartsImpacts"));
-            modelBuilder.Entity<Part>().HasMany(m => m.Conditions)
+                                       .Map(mm => mm.MapLeftKey("partsconditions_partid").MapRightKey("partsconditions_conditionid").ToTable("public.partsconditions"));
+            /*modelBuilder.Entity<Part>()*/part.HasMany(m => m.Part_Properties)
                                        .WithMany(em => em.Parts)
-                                       .Map(mm => mm.MapLeftKey("ConditionId").MapRightKey("PartId").ToTable("PartsConditions"));
-            modelBuilder.Entity<Part>().HasMany(m => m.Properties)
+                                       .Map(mm => mm.MapLeftKey("partsproperties_partid").MapRightKey("partsproperties_propertyid").ToTable("public.partsproperties"));
+            /*modelBuilder.Entity<Part>()*/part.HasKey(e => e.Part_Id)
+                                       .HasMany(m => m.Part_Assemblies)
                                        .WithMany(em => em.Parts)
-                                       .Map(mm => mm.MapLeftKey("PropertyId").MapRightKey("PartId").ToTable("PartsProperties"));
-            modelBuilder.Entity<Part>().HasKey(e => e.Id)
-                                       .HasMany(m => m.Assemblies)
-                                       .WithMany(em => em.Parts)
-                                       .Map(mm => mm.MapLeftKey("PartId").MapRightKey("AssemblyId").ToTable("PartsInAssemblyId"));
+                                       .Map(mm => mm.MapLeftKey("partsinassemblyparts_partid").MapRightKey("partsinassemblyparts_assemblyId").ToTable("public.partsinassemblyparts"));
             modelBuilder.Entity<Position>()
+                        .ToTable("public.positions", "public")
                         .HasKey(e => e.Id);
             modelBuilder.Entity<Profield>()
+                        .ToTable("public.profields", "public")
                         .HasKey(e => e.ProfieldId);
             modelBuilder.Entity<Property>()
+                        .ToTable("public.properties", "public")
+                        .HasKey(e => e.Id);
+            modelBuilder.Entity<PropertyType>()
+                        .ToTable("public.propertytypes", "public")
+                        .HasKey(e => e.Id);
+            modelBuilder.Entity<RemoteControl>()
+                        .ToTable("public.remoteControls", "public")
+                        .HasKey(e => e.Id);
+            modelBuilder.Entity<Value>()
+                        .ToTable("public.values", "public")
                         .HasKey(e => e.Id);
         }
 
