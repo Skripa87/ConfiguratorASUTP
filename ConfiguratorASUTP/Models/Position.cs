@@ -17,5 +17,10 @@ namespace ConfiguratorASUTP.Models
         public double Right { get; set; }
         public double Down { get; set; }
         public double Back { get; set; }
+        public virtual List<Part> Parts { get; set; }
+        public Position()
+        {
+            Parts = new List<Part>();
+        }
     }
 }

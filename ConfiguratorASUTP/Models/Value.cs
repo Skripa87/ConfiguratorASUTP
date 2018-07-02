@@ -10,5 +10,11 @@ namespace ConfiguratorASUTP.Models
         public int Id { get; set; }
         public string TypeValue { get; set; }
         public string Val { get; set; }
+        public virtual List<Property> Properties { get; set; }
+        public Value()
+        {
+            Properties = new List<Property>();
+        }
+
     }
 }

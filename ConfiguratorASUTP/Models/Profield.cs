@@ -15,5 +15,10 @@ namespace ConfiguratorASUTP.Models
         public double Height { get; set; }
         public double Weight { get; set; }
         public double Depth { get; set; }
+        public virtual List<Part> Parts { get; set; } 
+        public Profield()
+        {
+            Parts = new List<Part>();
+        }
     }
 }

@@ -12,39 +12,28 @@ namespace ConfiguratorASUTP.Models
     {
         [Key]
         public int Part_Id { get;set;}
+        [Display(Name = "Наименование детали")]
         public string Part_Name { get; set; }
+        [Display(Name = "Обозначение детали")]
         public string Part_Designation { get; set; }
+        [Display(Name = "Габариты или каркас детали")]
         public Profield Part_Profield { get; set; }
+        [Display(Name = "Размещение детали")]
         public Position Part_Position { get; set; }
-        public virtual List<Impact> Part_Impacts { get; set; }
-        public virtual List<Property> Part_Properties { get; set; }
-        public List<Part> Part_Parts { get; set; }
-        public virtual List<Condition> Part_Conditions { get; set; }
-        public virtual List<AssemblyPart> Part_Assemblies { get; set; }
+        public virtual List<Impact> Impacts { get; set; }
+        public virtual List<Property> Properties { get; set; }
+        public Part Part_Owner { get; set; }
+        public virtual List<Part> Childs { get; set; }
+        public virtual List<Condition> Conditions { get; set; }
+
+        public virtual List<RemoteControl> RemoteControls { get; set; }
         public Part()
         {
-            Part_Impacts = new List<Impact>();
-            Part_Properties = new List<Property>();
-            Part_Assemblies = new List<AssemblyPart>();
-            Part_Conditions = new List<Condition>();
-            Part_Parts = new List<Part>();
-            if (Part_Assemblies == null || Part_Assemblies.Count == 0 )
-            {
-                return;
-            }
-            else
-            {
-                foreach (var item in Part_Assemblies)
-                {
-                    if(item == null || item.Parts == null || item.Parts.Count > 0)
-                    {
-                        foreach (var itemLevel2 in item.Parts)
-                        {
-                            Part_Parts.Add(itemLevel2);
-                        }
-                    }
-                }
-            }
+            Impacts = new List<Impact>();
+            Properties = new List<Property>();
+            Conditions = new List<Condition>();
+            Childs = new List<Part>();
+            RemoteControls = new List<RemoteControl>();
         }
     }
 }

@@ -14,10 +14,13 @@ namespace ConfiguratorASUTP.Controllers
                 // GET: Administrator
         public ActionResult CreateNewPart()
         {
-            var x = ASUTPConfiguratorManager.getParts();
-            var z = ASUTPConfiguratorManager.getRemoteControls();
             return View();
         }
-        
+        public ActionResult CreatePart()
+        {
+            var x = ViewData["PartBasicProperties"];
+            return View();
+        }
+
     }
 }

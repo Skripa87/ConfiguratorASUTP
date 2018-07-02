@@ -16,10 +16,13 @@ namespace ConfiguratorASUTP.Models
         public PropertyType Type { get; set; }
         public virtual List<Value> Values { get; set; }
         public virtual List<Part> Parts { get; set; }
+
+        public virtual List<RemoteControl> RemoteControls { get; set; }
         public Property()
         {
             Values = new List<Value>();
             Parts = new List<Part>();
+            RemoteControls = new List<RemoteControl>();
         }
 
     }

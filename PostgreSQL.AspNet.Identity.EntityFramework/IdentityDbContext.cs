@@ -86,13 +86,14 @@ namespace PostgreSQL.AspNet.Identity.EntityFramework {
 		public IdentityDbContext(string nameOrConnectionString, DbCompiledModel model)
 			: base(nameOrConnectionString, model) {
 		}
-	}
+        
+    }
 
-	/// <summary>
-	/// DbContext which uses a custom user entity with a string primary key
-	/// </summary>
-	/// <typeparam name="TUser"></typeparam>
-	public class IdentityDbContext<TUser> :
+    /// <summary>
+    /// DbContext which uses a custom user entity with a string primary key
+    /// </summary>
+    /// <typeparam name="TUser"></typeparam>
+    public class IdentityDbContext<TUser> :
 		IdentityDbContext<TUser, IdentityRole, string, IdentityUserLogin, IdentityUserRole, IdentityUserClaim>
 		where TUser : IdentityUser {
 
