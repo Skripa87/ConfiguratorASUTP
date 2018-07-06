@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using ConfiguratorASUTP.Models;
+using System.Data.Entity;
 
 namespace ConfiguratorASUTP
 {
@@ -14,6 +15,7 @@ namespace ConfiguratorASUTP
         // Дополнительные сведения о настройке аутентификации см. на странице https://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
+            Database.SetInitializer<ApplicationDbContext>(new NullDatabaseInitializer<ApplicationDbContext>());
             // Настройка контекста базы данных, диспетчера пользователей и диспетчера входа для использования одного экземпляра на запрос
             app.CreatePerOwinContext(ApplicationDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
@@ -63,6 +65,7 @@ namespace ConfiguratorASUTP
             //    ClientId = "",
             //    ClientSecret = ""
             //});
+            
         }
     }
 }

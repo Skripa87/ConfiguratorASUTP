@@ -11,14 +11,14 @@ namespace ConfiguratorASUTP.Models
     public class Impact
     {
         [Key]
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public ImpactType Type { get; set; }        
-        public virtual List<Part> Parts { get; set; }
+        public int ImpactId { get; set; }
+        public string ImpactName { get; set; }
+        public string ImpactDescription { get; set; }
+        public ImpactType ImpactType { get; set; }
+        public List<Property> ImpactPropertyTypes { get; set; }
         public Impact()
         {
-            Parts = new List<Part>();
+            ImpactPropertyTypes = new List<Property>();
         }
     }
 }

@@ -11,7 +11,7 @@ namespace ConfiguratorASUTP.Models
     public class PropertyType
     {
         [Key]
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public int PropertyTypeId { get; set; }
+        public string PropertyTypeName { get; set; }
     }
 }

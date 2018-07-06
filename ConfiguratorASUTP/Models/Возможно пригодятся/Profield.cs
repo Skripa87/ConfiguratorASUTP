@@ -7,11 +7,13 @@ using System.Web;
 
 namespace ConfiguratorASUTP.Models
 {
-    [Table("PropertyTypes")]
-    public class PropertyType
+    [Table("Profields")]
+    public class Profield
     {
         [Key]
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public int ProfieldId { get; set; }
+        public double Height { get; set; }
+        public double Weight { get; set; }
+        public double Depth { get; set; }
     }
 }

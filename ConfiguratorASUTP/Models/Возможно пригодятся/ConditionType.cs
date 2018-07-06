@@ -7,11 +7,12 @@ using System.Web;
 
 namespace ConfiguratorASUTP.Models
 {
-    [Table("PropertyTypes")]
-    public class PropertyType
+    [Table("ConditionTypes")]
+    public class ConditionType
     {
         [Key]
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public int ConditionTypeId { get; set; }
+        public string ConditionTypeName { get; set; }
+        public string ConditionNonActivateClasses { get; set; }
     }
 }

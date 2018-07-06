@@ -11,8 +11,8 @@ namespace ConfiguratorASUTP.Models
     public class ConditionType
     {
         [Key]
-        public int ConditionTypeId { get; set; }
-        public string ConditionTypeName { get; set; }
-        public string ConditionNonActivateClasses { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string NonActivateClasses { get; set; }
     }
 }

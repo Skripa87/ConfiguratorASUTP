@@ -7,11 +7,11 @@ using System.Web;
 
 namespace ConfiguratorASUTP.Models
 {
-    [Table("PropertyTypes")]
-    public class PropertyType
+    [Table("ImpactTypes")]
+    public class ImpactType
     {
         [Key]
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public int ImpactTypeId { get; set; }
+        public string ImpactTypeName { get; set; }
     }
 }

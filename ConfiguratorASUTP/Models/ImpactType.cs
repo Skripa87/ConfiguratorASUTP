@@ -11,7 +11,7 @@ namespace ConfiguratorASUTP.Models
     public class ImpactType
     {
         [Key]
-        public int ImpactTypeId { get; set; }
-        public string ImpactTypeName { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }

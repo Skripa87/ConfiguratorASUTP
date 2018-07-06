@@ -11,17 +11,20 @@ namespace ConfiguratorASUTP.Models
     public class Condition
     {
         [Key]
-        public int ConditionId { get; set; }
-        public string ConditionName { get; set; }
-        public ConditionType ConditionType { get; set; }
-        public string ConditionClass { get; set; }
-        public List<Property> ConditionClassProperties { get; set; }
-        public bool isRangeConditionTypeValues { get; set; }
-        public string ConditionActivateValues { get; set; }
-        public bool ConditionState { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public ConditionType Type { get; set; }
+        public Property ClassesProperty { get; set; }
+        public string Classes { get; set; }
+        public string ActivateValues { get; set; }
+        public bool isRangeTypeValue { get; set; }
+        public bool State { get; set; }
+        public virtual List<Part> Parts {get;set;}
         public Condition()
         {
-            ConditionClassProperties = new List<Property>();
+            Parts = new List<Part>();
         }
+
+        
     }
 }

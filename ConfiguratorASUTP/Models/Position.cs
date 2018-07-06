@@ -7,16 +7,18 @@ using System.Web;
 
 namespace ConfiguratorASUTP.Models
 {
-    [Table("Impacts")]
-    public class Impact
+    [Table("Positions")]
+    public class Position
     {
         [Key]
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public ImpactType Type { get; set; }        
+        public string Type { get; set; }
+        public double Up { get; set; }
+        public double Right { get; set; }
+        public double Down { get; set; }
+        public double Back { get; set; }
         public virtual List<Part> Parts { get; set; }
-        public Impact()
+        public Position()
         {
             Parts = new List<Part>();
         }

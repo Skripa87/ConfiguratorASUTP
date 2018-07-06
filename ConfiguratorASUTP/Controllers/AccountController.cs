@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ConfiguratorASUTP.Models;
+using Microsoft.Exchange.WebServices.Data;
 
 namespace ConfiguratorASUTP.Controllers
 {
@@ -151,19 +152,31 @@ namespace ConfiguratorASUTP.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Login, Email = model.Email, EmailConfirmed = false };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    ExchangeService exchangeService = new ExchangeService();
+                    exchangeService.Credentials = new WebCredentials("krusklient.info@krus-zapad.ru", "32iX35#");
+                    exchangeService.AutodiscoverUrl("krusklient.info@krus-zapad.ru", RedirectionUrlValidationCallback);
+                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    string messageLink = string.Format("Для завершения регистрации перейдите по ссылке:" +
+                                                      "<a href=\"{0}\" title=\"Подтвердить регистрацию\">{0}</a>",
+                                           Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code, email = user.Email }, Request.Url.Scheme));
+                    EmailMessage emailMessage = new EmailMessage(exchangeService);
+                    emailMessage.Body = messageLink;
+                    emailMessage.Subject = "Выполнена регистрация, для завершения подтвердите адрес своей электронной почты";
+                    emailMessage.ToRecipients.Add(user.Email);
+                    emailMessage.SendAndSaveCopy();
+                    //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+
                     // Дополнительные сведения о включении подтверждения учетной записи и сброса пароля см. на странице https://go.microsoft.com/fwlink/?LinkID=320771.
                     // Отправка сообщения электронной почты с этой ссылкой
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Подтверждение учетной записи", "Подтвердите вашу учетную запись, щелкнув <a href=\"" + callbackUrl + "\">здесь</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Confirm", "Account", new { Email = user.Email });
                 }
                 AddErrors(result);
             }
@@ -172,17 +185,53 @@ namespace ConfiguratorASUTP.Controllers
             return View(model);
         }
 
+        [AllowAnonymous]
+        public string Confirm(string Email)
+        {
+            return "На почтовый адрес " + Email + " Вам высланы дальнейшие инструкции по завершению регистрации";
+        }
+
+        private static bool RedirectionUrlValidationCallback(string redirectionUrl)
+        {
+            bool result = false;
+            Uri redirectionUri = new Uri(redirectionUrl);
+            if (redirectionUri.Scheme == "https")
+            {
+                result = true;
+            }
+            return result;
+        }
+
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
-        public async Task<ActionResult> ConfirmEmail(string userId, string code)
+        public async Task<ActionResult> ConfirmEmail(string userId, string code, string email)
         {
             if (userId == null || code == null)
             {
                 return View("Error");
             }
-            var result = await UserManager.ConfirmEmailAsync(userId, code);
-            return View(result.Succeeded ? "ConfirmEmail" : "Error");
+            ApplicationUser user = this.UserManager.FindById(userId);
+            if (user != null)
+            {
+                if (user.Email == email)
+                {
+                    user.EmailConfirmed = true;
+                    await UserManager.UpdateAsync(user);
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    return RedirectToAction("Index", "Home", new { EmailConfirmed = user.Email });
+                }
+                else
+                {
+                    return RedirectToAction("Confirm");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Confirm", "Account", new { Email = "" });
+            }
+            //var result = await UserManager.ConfirmEmailAsync(userId, code);
+            //return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
 
         //
