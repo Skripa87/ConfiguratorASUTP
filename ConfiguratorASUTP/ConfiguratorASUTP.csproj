@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ConfiguratorASUTP</RootNamespace>
     <AssemblyName>ConfiguratorASUTP</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -48,10 +48,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework6.Npgsql, Version=3.1.1.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework6.Npgsql.3.1.1\lib\net45\EntityFramework6.Npgsql.dll</HintPath>
@@ -113,9 +113,9 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
@@ -243,20 +243,18 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AssemblyStage.cs" />
     <Compile Include="Models\ASUTPConfiguratorContext.cs" />
     <Compile Include="Models\ASUTPConfiguratorManager.cs" />
-    <Compile Include="Models\Condition.cs" />
-    <Compile Include="Models\ConditionType.cs" />
+    <Compile Include="Models\Composition.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Impact.cs" />
-    <Compile Include="Models\ImpactType.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Part.cs" />
-    <Compile Include="Models\Position.cs" />
-    <Compile Include="Models\Profield.cs" />
     <Compile Include="Models\Property.cs" />
-    <Compile Include="Models\PropertyType.cs" />
+    <Compile Include="Models\Property_Value_Part.cs" />
     <Compile Include="Models\RemoteControl.cs" />
+    <Compile Include="Models\Upgrade.cs" />
+    <Compile Include="Models\UpgradeType.cs" />
     <Compile Include="Models\Value.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />

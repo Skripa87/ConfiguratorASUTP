@@ -7,20 +7,20 @@ using System.Web;
 
 namespace ConfiguratorASUTP.Models
 {
-    [Table("Positions")]
-    public class Position
+    [Table("Upgrades")]
+    public class Upgrade
     {
         [Key]
         public int Id { get; set; }
-        public string Type { get; set; }
-        public double Up { get; set; }
-        public double Right { get; set; }
-        public double Down { get; set; }
-        public double Back { get; set; }
+        public string Value { get; set; }
+        public virtual List<UpgradeType> UpgradeTypes { get; set; }
+        public virtual List<Property> Properties { get; set; }
         public virtual List<Part> Parts { get; set; }
-        public Position()
+        public Upgrade()
         {
+            Properties = new List<Property>();
             Parts = new List<Part>();
+            UpgradeTypes = new List<UpgradeType>();
         }
     }
 }

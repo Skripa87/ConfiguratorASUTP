@@ -7,11 +7,14 @@ using System.Web;
 
 namespace ConfiguratorASUTP.Models
 {
-    [Table("PropertyTypes")]
-    public class PropertyType
+    public class Composition
     {
-        [Key]
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string Description { get; set; }
+        public virtual List<Part> Parts { get; set; }
+        public Composition()
+        {
+            Parts = new List<Part>();
+        }
     }
 }

@@ -11,29 +11,26 @@ namespace ConfiguratorASUTP.Models
     public class Part
     {
         [Key]
-        public int Part_Id { get;set;}
+        public int Id { get;set;}
         [Display(Name = "Наименование детали")]
-        public string Part_Name { get; set; }
+        public string Name { get; set; }
         [Display(Name = "Обозначение детали")]
-        public string Part_Designation { get; set; }
-        [Display(Name = "Габариты или каркас детали")]
-        public Profield Part_Profield { get; set; }
-        [Display(Name = "Размещение детали")]
-        public Position Part_Position { get; set; }
-        public virtual List<Impact> Impacts { get; set; }
+        public string Designation { get; set; }
+        public Composition Composition { get; set; }
         public virtual List<Property> Properties { get; set; }
-        public Part Part_Owner { get; set; }
-        public virtual List<Part> Childs { get; set; }
-        public virtual List<Condition> Conditions { get; set; }
-
         public virtual List<RemoteControl> RemoteControls { get; set; }
+        public virtual List<Composition> Compoitions { get; set; }
+        public virtual List<AssemblyStage> AssemblyStages { get; set; }
+        public virtual List<Upgrade> Upgrades { get; set; }
+        public virtual List<Property_Value_Part> Properties_Values_Parts { get; set; }
         public Part()
         {
-            Impacts = new List<Impact>();
             Properties = new List<Property>();
-            Conditions = new List<Condition>();
-            Childs = new List<Part>();
             RemoteControls = new List<RemoteControl>();
+            Compoitions = new List<Composition>();
+            AssemblyStages = new List<AssemblyStage>();
+            Upgrades = new List<Upgrade>();
+            Properties_Values_Parts = new List<Property_Value_Part>();
         }
     }
 }

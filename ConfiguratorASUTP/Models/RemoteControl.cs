@@ -11,10 +11,9 @@ namespace ConfiguratorASUTP.Models
     public class RemoteControl
     {
         [Key]
-        public int RemoteControl_Id { get; set; }
-        public string RemoteControl_Name { get; set; }
-        public string RemoteControl_Designation { get; set; }
-        public Profield RemoteControl_Profield { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Designation { get; set; }
         public List<Part> Parts { get; set; }
         public List<Property> Properties { get; set; }
         public RemoteControl()

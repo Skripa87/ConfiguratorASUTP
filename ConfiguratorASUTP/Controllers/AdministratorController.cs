@@ -18,7 +18,8 @@ namespace ConfiguratorASUTP.Controllers
         }
         public ActionResult CreatePart()
         {
-            var x = ViewData["PartBasicProperties"];
+            var parts = ASUTPConfiguratorManager.getParts();
+            var s = parts.FirstOrDefault().Properties;
             return View();
         }
 

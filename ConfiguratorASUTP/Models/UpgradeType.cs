@@ -5,18 +5,16 @@ using System.Web;
 
 namespace ConfiguratorASUTP.Models
 {
-    public class Value
+    public class UpgradeType
     {
         public int Id { get; set; }
-        public string TypeValue { get; set; }
-        public string Val { get; set; }
+        public string Name { get; set; }
+        public virtual List<Upgrade> Upgrades { get; set; }
         public virtual List<Property> Properties { get; set; }
-        public virtual List<Property_Value_Part> Properties_Values_Parts { get; set; }
-        public Value()
+        public UpgradeType()
         {
+            Upgrades = new List<Upgrade>();
             Properties = new List<Property>();
-            Properties_Values_Parts = new List<Property_Value_Part>();
         }
-
     }
 }
